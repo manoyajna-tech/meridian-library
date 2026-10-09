@@ -1,9 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import {
-  AlarmClock, ArrowDownToLine, ArrowUpFromLine, BarChart3, Bell, BookCopy, BookOpen, ClipboardList, FolderTree,
-  Home, LayoutDashboard, Menu, Settings, User, Users,
-} from "lucide-react";
+import { Bell, BookOpen, Home, LayoutDashboard, Menu, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useIsAdmin, useSession } from "@/lib/auth";
@@ -12,15 +9,6 @@ import { GlobalSearch, NotificationBell, UserMenu } from "./header-widgets";
 
 const ADMIN = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { to: "/admin/books", label: "Manage Books", icon: BookCopy },
-  { to: "/admin/categories", label: "Manage Categories", icon: FolderTree },
-  { to: "/admin/students", label: "Manage Students", icon: Users },
-  { to: "/admin/issue", label: "Issue Books", icon: ArrowUpFromLine },
-  { to: "/admin/returns", label: "Return Books", icon: ArrowDownToLine },
-  { to: "/admin/requests", label: "Borrow Requests", icon: ClipboardList },
-  { to: "/admin/overdue", label: "Overdue Books", icon: AlarmClock },
-  { to: "/admin/reports", label: "Reports", icon: BarChart3 },
-  { to: "/admin/settings", label: "Settings", icon: Settings },
 ] as const;
 
 const STUDENT = [
