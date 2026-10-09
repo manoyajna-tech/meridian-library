@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { Bell, LayoutDashboard, LogOut, Search, Settings, ShieldCheck, User } from "lucide-react";
+import { Bell, LayoutDashboard, LogOut, Search, ShieldCheck, User } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -109,7 +109,6 @@ export function UserMenu({ userId }: { userId: string }) {
         <DropdownMenuItem asChild><Link to="/dashboard"><LayoutDashboard className="mr-2 h-4 w-4" />My dashboard</Link></DropdownMenuItem>
         {isAdmin && <DropdownMenuItem asChild><Link to="/admin"><ShieldCheck className="mr-2 h-4 w-4" />Admin dashboard</Link></DropdownMenuItem>}
         <DropdownMenuItem asChild><Link to="/profile"><User className="mr-2 h-4 w-4" />Account settings</Link></DropdownMenuItem>
-        {isAdmin && <DropdownMenuItem asChild><Link to="/admin/settings"><Settings className="mr-2 h-4 w-4" />Library settings</Link></DropdownMenuItem>}
         <DropdownMenuSeparator />
         <DropdownMenuItem onClick={signOut}><LogOut className="mr-2 h-4 w-4" />Log out</DropdownMenuItem>
       </DropdownMenuContent>

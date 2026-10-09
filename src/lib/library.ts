@@ -47,7 +47,7 @@ export function errMsg(e: unknown): string {
 
 export function toCSV(rows: Record<string, unknown>[]): string {
   if (!rows.length) return "";
-  const headers = Object.keys(rows[0]);
+  const headers = Object.keys(rows[0]!);
   const esc = (v: unknown) => {
     const s = v == null ? "" : String(v);
     return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;

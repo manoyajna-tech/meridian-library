@@ -36,6 +36,7 @@ function ProfilePage() {
     if (error) return toast.error(errMsg(error));
     toast.success("Profile updated");
     qc.invalidateQueries({ queryKey: ["profile", userId] });
+    return undefined;
   }
   async function changePw(e: FormEvent) {
     e.preventDefault();
@@ -45,6 +46,7 @@ function ProfilePage() {
     if (error) return toast.error(error.message);
     toast.success("Password changed");
     setPw({ current: "", next: "" });
+    return undefined;
   }
 
   if (isLoading || !p) return <AppShell><Spinner /></AppShell>;

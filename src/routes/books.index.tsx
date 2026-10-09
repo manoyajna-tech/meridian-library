@@ -10,18 +10,18 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 
-type Search = { q?: string; category?: string; avail?: "available" | "borrowed"; sort?: "title" | "author" | "year"; page?: number; view?: "grid" | "list" };
+type Search = { q?: string | undefined; category?: string | undefined; avail?: "available" | "borrowed" | undefined; sort?: "title" | "author" | "year" | undefined; page?: number | undefined; view?: "grid" | "list" | undefined };
 const PAGE = 12;
 
 export const Route = createFileRoute("/books/")({
-  validateSearch: (s: Record<string, unknown>): Search => ({
+  validateSearch: (raw: Record<string, unknown>): Search => { const s = raw as { q?: unknown; category?: unknown; avail?: unknown; sort?: unknown; page?: unknown; view?: unknown }; return ({
     q: typeof s.q === "string" && s.q ? s.q : undefined,
     category: typeof s.category === "string" && s.category ? s.category : undefined,
     avail: s.avail === "available" || s.avail === "borrowed" ? s.avail : undefined,
     sort: s.sort === "author" || s.sort === "year" ? s.sort : s.sort === "title" ? "title" : undefined,
     page: Number(s.page) > 1 ? Math.floor(Number(s.page)) : undefined,
     view: s.view === "list" ? "list" : undefined,
-  }),
+  }; },
   head: () => ({
     meta: [
       { title: "Browse Books — Meridian College Library" },
