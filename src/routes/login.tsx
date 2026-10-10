@@ -33,7 +33,7 @@ function Login() {
   const { redirect } = Route.useSearch();
   const navigate = useNavigate();
   const [form, setForm] = useState({ email: "", password: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
   const [busy, setBusy] = useState(false);
 
   async function submit(e: FormEvent) {

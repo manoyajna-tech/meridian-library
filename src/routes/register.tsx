@@ -34,7 +34,7 @@ const schema = z.object({
 
 function Register() {
   const [form, setForm] = useState({ full_name: "", email: "", student_id: "", department: "", password: "", confirm: "" });
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [errors, setErrors] = useState<Partial<Record<keyof typeof form, string>>>({});
   const [busy, setBusy] = useState(false);
   const [sent, setSent] = useState(false);
   const up = (k: keyof typeof form) => (e: { target: { value: string } }) => setForm({ ...form, [k]: e.target.value });
