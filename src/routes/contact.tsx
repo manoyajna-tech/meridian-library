@@ -16,9 +16,9 @@ export const Route = createFileRoute("/contact")({
 
 function Contact() {
   const items = [
-    { i: MapPin, t: "Visit us", d: "Central Block, Meridian College Campus" },
-    { i: Phone, t: "Call the desk", d: "+91 40 1234 5678", href: "tel:+914012345678" },
-    { i: Mail, t: "Email", d: "library@meridian.edu", href: "mailto:library@meridian.edu" },
+    { i: MapPin, t: "Visit us", d: "3rd Block, A.A.N.M &  V.V.R.S.R POLYTECHNIC Campus" },
+    { i: Phone, t: "Call the desk", d: "+91 9390029353", href: "tel:+919390029353" },
+    { i: Mail, t: "Email", d: "manoyajnagarapati@gmail.com", href: "mailto:manoyajnagarapati@gmail.com" },
   ];
   return (
     <PublicLayout>
