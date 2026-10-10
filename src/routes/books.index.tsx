@@ -21,7 +21,7 @@ export const Route = createFileRoute("/books/")({
     sort: s.sort === "author" || s.sort === "year" ? s.sort : s.sort === "title" ? "title" : undefined,
     page: Number(s.page) > 1 ? Math.floor(Number(s.page)) : undefined,
     view: s.view === "list" ? "list" : undefined,
-  });
+  }); },
   head: () => ({
     meta: [
       { title: "Browse Books — Meridian College Library" },
