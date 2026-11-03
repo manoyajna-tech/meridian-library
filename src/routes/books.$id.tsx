@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { PublicLayout } from "@/components/library/PublicLayout";
 import { Availability, BookCover, EmptyState, Spinner } from "@/components/library/bits";
 import { Button } from "@/components/ui/button";
+import { WishlistButton } from "@/components/library/WishlistButton";
 import { useSession } from "@/lib/auth";
 import { errMsg, fmtDate } from "@/lib/library";
 
@@ -83,7 +84,8 @@ function BookDetail() {
                 <div key={k}><dt className="text-muted-foreground">{k}</dt><dd className="font-medium">{v ?? "—"}</dd></div>
               ))}
             </dl>
-            <div className="mt-6">
+            <div className="mt-6 flex flex-wrap items-center gap-3">
+              <WishlistButton bookId={b.id} userId={user?.id} />
               {!user ? (
                 <div className="flex flex-wrap items-center gap-3">
                   <Button asChild size="lg"><Link to="/login" search={{ redirect: `/books/${b.id}` }}>Sign in to request</Link></Button>

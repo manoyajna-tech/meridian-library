@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "@tanstack/react-router";
-import { Bell, BookOpen, Home, LayoutDashboard, Menu, User } from "lucide-react";
+import { BarChart3, Bell, BookOpen, ClipboardList, Heart, Home, LayoutDashboard, LibraryBig, Menu, Settings, Tags, User, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { useIsAdmin, useSession } from "@/lib/auth";
@@ -9,11 +9,19 @@ import { GlobalSearch, NotificationBell, UserMenu } from "./header-widgets";
 
 const ADMIN = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
+  { to: "/admin/books", label: "Books", icon: LibraryBig },
+  { to: "/admin/categories", label: "Categories", icon: Tags },
+  { to: "/admin/users", label: "Students", icon: Users },
+  { to: "/admin/requests", label: "Requests", icon: ClipboardList },
+  { to: "/admin/loans", label: "Loans & Returns", icon: BookOpen },
+  { to: "/admin/reports", label: "Reports", icon: BarChart3 },
+  { to: "/admin/settings", label: "Settings", icon: Settings },
 ] as const;
 
 const STUDENT = [
   { to: "/dashboard", label: "My Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/books", label: "Browse Catalog", icon: BookOpen },
+  { to: "/wishlist", label: "Wishlist", icon: Heart },
   { to: "/notifications", label: "Notifications", icon: Bell },
   { to: "/profile", label: "Profile", icon: User },
 ] as const;
