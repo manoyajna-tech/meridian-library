@@ -58,7 +58,7 @@ function AdminCategories() {
         <Button onClick={() => setEditing("new")}><Plus className="mr-2 h-4 w-4" />Add category</Button>
       </PageHeader>
 
-      {cats.isLoading ? <Spinner /> : cats.error ? <ErrorNote error={cats.error} /> : cats.data.length === 0 ? (
+      {cats.isLoading || !cats.data ? <Spinner /> : cats.error ? <ErrorNote error={cats.error} /> : cats.data.length === 0 ? (
         <EmptyState title="No categories yet" />
       ) : (
         <div className="overflow-x-auto rounded-xl border bg-card shadow-card">
