@@ -27,7 +27,7 @@ function AdminDashboard() {
         supabase.from("books").select("id,total_copies,available_copies,is_archived,category_id").eq("is_archived", false),
         supabase.from("profiles").select("id", { count: "exact", head: true }),
         supabase.from("loans").select("id,status,due_date,issue_date,book_id"),
-        supabase.from("borrow_requests").select("id,status,requested_at,books(title),profiles(full_name)").order("requested_at", { ascending: false }),
+        supabase.from("borrow_requests").select("id,status,requested_at,books(title),profiles!borrow_requests_student_id_fkey(full_name)").order("requested_at", { ascending: false }),
         supabase.from("categories").select("id,name"),
       ]);
       if (books.error) throw books.error;
