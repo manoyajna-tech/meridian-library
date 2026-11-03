@@ -26,6 +26,8 @@ import { Route as AuthenticatedWishlistRouteImport } from './routes/_authenticat
 import { Route as BooksIndexRouteImport } from './routes/books.index'
 import { Route as BooksIdRouteImport } from './routes/books.$id'
 import { Route as AuthenticatedAdminIndexRouteImport } from './routes/_authenticated/admin/index'
+import { Route as AuthenticatedAdminBooksRouteImport } from './routes/_authenticated/admin/books'
+import { Route as AuthenticatedAdminCategoriesRouteImport } from './routes/_authenticated/admin/categories'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -112,6 +114,17 @@ const AuthenticatedAdminIndexRoute = AuthenticatedAdminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedAdminRouteRoute,
 } as any)
+const AuthenticatedAdminBooksRoute = AuthenticatedAdminBooksRouteImport.update({
+  id: '/books',
+  path: '/books',
+  getParentRoute: () => AuthenticatedAdminRouteRoute,
+} as any)
+const AuthenticatedAdminCategoriesRoute =
+  AuthenticatedAdminCategoriesRouteImport.update({
+    id: '/categories',
+    path: '/categories',
+    getParentRoute: () => AuthenticatedAdminRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -129,6 +142,8 @@ export interface FileRoutesByFullPath {
   '/wishlist': typeof AuthenticatedWishlistRoute
   '/books/$id': typeof BooksIdRoute
   '/books/': typeof BooksIndexRoute
+  '/admin/books': typeof AuthenticatedAdminBooksRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
   '/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesByTo {
@@ -146,6 +161,8 @@ export interface FileRoutesByTo {
   '/wishlist': typeof AuthenticatedWishlistRoute
   '/books/$id': typeof BooksIdRoute
   '/books': typeof BooksIndexRoute
+  '/admin/books': typeof AuthenticatedAdminBooksRoute
+  '/admin/categories': typeof AuthenticatedAdminCategoriesRoute
   '/admin': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRoutesById {
@@ -166,6 +183,8 @@ export interface FileRoutesById {
   '/_authenticated/wishlist': typeof AuthenticatedWishlistRoute
   '/books/$id': typeof BooksIdRoute
   '/books/': typeof BooksIndexRoute
+  '/_authenticated/admin/books': typeof AuthenticatedAdminBooksRoute
+  '/_authenticated/admin/categories': typeof AuthenticatedAdminCategoriesRoute
   '/_authenticated/admin/': typeof AuthenticatedAdminIndexRoute
 }
 export interface FileRouteTypes {
@@ -186,6 +205,8 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/books/$id'
     | '/books/'
+    | '/admin/books'
+    | '/admin/categories'
     | '/admin/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -203,6 +224,8 @@ export interface FileRouteTypes {
     | '/wishlist'
     | '/books/$id'
     | '/books'
+    | '/admin/books'
+    | '/admin/categories'
     | '/admin'
   id:
     | '__root__'
@@ -222,6 +245,8 @@ export interface FileRouteTypes {
     | '/_authenticated/wishlist'
     | '/books/$id'
     | '/books/'
+    | '/_authenticated/admin/books'
+    | '/_authenticated/admin/categories'
     | '/_authenticated/admin/'
   fileRoutesById: FileRoutesById
 }
@@ -360,15 +385,33 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAdminIndexRouteImport
       parentRoute: typeof AuthenticatedAdminRouteRoute
     }
+    '/_authenticated/admin/books': {
+      id: '/_authenticated/admin/books'
+      path: '/books'
+      fullPath: '/admin/books'
+      preLoaderRoute: typeof AuthenticatedAdminBooksRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
+    '/_authenticated/admin/categories': {
+      id: '/_authenticated/admin/categories'
+      path: '/categories'
+      fullPath: '/admin/categories'
+      preLoaderRoute: typeof AuthenticatedAdminCategoriesRouteImport
+      parentRoute: typeof AuthenticatedAdminRouteRoute
+    }
   }
 }
 
 interface AuthenticatedAdminRouteRouteChildren {
+  AuthenticatedAdminBooksRoute: typeof AuthenticatedAdminBooksRoute
+  AuthenticatedAdminCategoriesRoute: typeof AuthenticatedAdminCategoriesRoute
   AuthenticatedAdminIndexRoute: typeof AuthenticatedAdminIndexRoute
 }
 
 const AuthenticatedAdminRouteRouteChildren: AuthenticatedAdminRouteRouteChildren =
   {
+    AuthenticatedAdminBooksRoute: AuthenticatedAdminBooksRoute,
+    AuthenticatedAdminCategoriesRoute: AuthenticatedAdminCategoriesRoute,
     AuthenticatedAdminIndexRoute: AuthenticatedAdminIndexRoute,
   }
 
