@@ -44,7 +44,7 @@ function AdminSettings() {
   return (
     <div>
       <PageHeader title="Settings" description="Rules that apply to every new loan." />
-      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote message={errMsg(q.error)} /> : (
+      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote error={q.error} /> : (
         <form className="max-w-md space-y-4 rounded-lg border bg-card p-6" onSubmit={(e) => { e.preventDefault(); save.mutate(); }}>
           <div><Label htmlFor="d">Loan period (days)</Label><Input id="d" type="number" value={form.days} onChange={(e) => setForm({ ...form, days: e.target.value })} /></div>
           <div><Label htmlFor="m">Max books per student</Label><Input id="m" type="number" value={form.max} onChange={(e) => setForm({ ...form, max: e.target.value })} /></div>

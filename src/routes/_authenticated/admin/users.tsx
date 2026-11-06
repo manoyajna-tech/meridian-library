@@ -62,7 +62,7 @@ function AdminUsers() {
     <div>
       <PageHeader title="Students & users" description="Search accounts, suspend access, and manage admin roles." />
       <Input placeholder="Search by name, email, student ID or department" value={search} onChange={(e) => setSearch(e.target.value)} className="mb-4 max-w-md" />
-      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote message={errMsg(q.error)} /> : !rows.length ? <EmptyState title="No users found" /> : (
+      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote error={q.error} /> : !rows.length ? <EmptyState title="No users found" /> : (
         <div className="rounded-lg border bg-card">
           <Table>
             <TableHeader><TableRow><TableHead>Name</TableHead><TableHead>Student ID</TableHead><TableHead>Department</TableHead><TableHead>Borrowed</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>

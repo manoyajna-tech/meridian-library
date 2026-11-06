@@ -14,7 +14,7 @@ export const Route = createFileRoute("/_authenticated/admin/reports")({
 
 function toCsv(rows: Record<string, unknown>[]) {
   if (!rows.length) return "";
-  const keys = Object.keys(rows[0]);
+  const keys = Object.keys(rows[0] ?? {});
   const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
   return [keys.join(","), ...rows.map((r) => keys.map((k) => esc(r[k])).join(","))].join("\n");
 }
@@ -36,7 +36,7 @@ function AdminReports() {
     },
   });
   if (q.isLoading) return <Spinner />;
-  if (q.error) return <ErrorNote message={errMsg(q.error)} />;
+  if (q.error) return <ErrorNote error={q.error} />;
   const loans = q.data ?? [];
   const today = new Date().toISOString().slice(0, 10);
   const byMonth = new Map<string, number>(); const byCat = new Map<string, number>(); const byBook = new Map<string, number>();

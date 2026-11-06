@@ -1,13 +1,13 @@
 # Meridian Library — UI & Admin Dashboard Upgrade
 
 - [x] Super admin: manoyajnagarapati@gmail.com already has admin role (verified in DB)
-- [ ] Design tokens: spec palette (#142B4A navy, #245B91 royal blue, #F5F7FA bg, #D4AF37 gold)
-- [ ] Login page redesign: show/hide password, remember me, welcome message
-- [ ] Wishlist feature: table + RLS + page + toggle on book cards/detail
-- [ ] Admin dashboard: 6 stat cards + charts (Recharts)
-- [ ] Admin book management: CRUD, cover upload, categories
-- [ ] Admin user management: list/search, activate/deactivate, roles, history
-- [ ] Admin borrowing: requests approve/reject, returns, overdue, fines
-- [ ] Admin reports: charts + CSV export
-- [ ] Admin settings page
-- [ ] Verify build + key flows in preview
+- [x] Design tokens: spec palette (#142B4A navy, #245B91 royal blue, #F5F7FA bg, #D4AF37 gold)
+- [x] Login page redesign: show/hide password, remember me, welcome message
+- [x] Wishlist feature: table + RLS + page + toggle on book cards/detail
+- [x] Admin dashboard: 6 stat cards + charts (Recharts)
+- [x] Admin book management: CRUD, cover upload, categories
+- [x] Admin user management: list/search, activate/deactivate, roles, history
+- [x] Admin borrowing: requests approve/reject, returns, overdue, fines
+- [x] Admin reports: charts + CSV export
+- [x] Admin settings page
+- [x] Verify build + key flows in preview

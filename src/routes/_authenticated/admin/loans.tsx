@@ -62,7 +62,7 @@ function AdminLoans() {
           <Button key={t} size="sm" variant={t === tab ? "default" : "outline"} onClick={() => setTab(t)} className="capitalize">{t === "fines" ? "Unpaid fines" : t}</Button>
         ))}
       </div>
-      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote message={errMsg(q.error)} /> : !q.data?.length ? <EmptyState title="Nothing here" /> : (
+      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote error={q.error} /> : !q.data?.length ? <EmptyState title="Nothing here" /> : (
         <div className="rounded-lg border bg-card">
           <Table>
             <TableHeader><TableRow><TableHead>Student</TableHead><TableHead>Book</TableHead><TableHead>Issued</TableHead><TableHead>Due</TableHead><TableHead>Status</TableHead><TableHead>Fine</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>

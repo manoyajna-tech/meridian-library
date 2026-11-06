@@ -54,7 +54,7 @@ function AdminRequests() {
           <Button key={f} size="sm" variant={f === status ? "default" : "outline"} onClick={() => setStatus(f)} className="capitalize">{f}</Button>
         ))}
       </div>
-      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote message={errMsg(q.error)} /> : !q.data?.length ? (
+      {q.isLoading ? <Spinner /> : q.error ? <ErrorNote error={q.error} /> : !q.data?.length ? (
         <EmptyState title={`No ${status} requests`} />
       ) : (
         <div className="rounded-lg border bg-card">
