@@ -11,7 +11,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/requests")({
-  head: () => ({ meta: [{ title: "Borrow Requests — Meridian College Library" }, { name: "description", content: "Approve or reject student borrow requests." }] }),
+  head: () => ({ meta: [
+    { title: "Borrow Requests — Meridian College Library" },
+    { name: "description", content: "Approve or reject student borrow requests." },
+    { property: "og:title", content: "Borrow Requests — Meridian College Library" },
+    { property: "og:description", content: "Review and manage student requests for library books." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminRequests,
 });
 

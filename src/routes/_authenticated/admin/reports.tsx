@@ -8,19 +8,33 @@ import { Button } from "@/components/ui/button";
 import { errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/reports")({
-  head: () => ({ meta: [{ title: "Reports — Meridian College Library" }, { name: "description", content: "Circulation reports with CSV export." }] }),
+  head: () => ({ meta: [
+    { title: "Reports — Meridian College Library" },
+    { name: "description", content: "Circulation reports with CSV export." },
+    { property: "og:title", content: "Library Reports — Meridian College Library" },
+    { property: "og:description", content: "Review book circulation, overdue items, and downloadable loan reports." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminReports,
 });
 
 function toCsv(rows: Record<string, unknown>[]) {
-  if (!rows.length) return "";
-  const keys = Object.keys(rows[0] ?? {});
+  const keys = rows.length
+    ? Object.keys(rows[0] ?? {})
+    : ["student", "student_id", "book", "category", "issued", "due", "returned", "status", "fine", "fine_paid"];
   const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-  return [keys.join(","), ...rows.map((r) => keys.map((k) => esc(r[k])).join(","))].join("\n");
+  return [keys.map(esc).join(","), ...rows.map((r) => keys.map((k) => esc(r[k])).join(","))].join("\n");
 }
 function download(name: string, rows: Record<string, unknown>[]) {
-  const url = URL.createObjectURL(new Blob([toCsv(rows)], { type: "text/csv" }));
-  const a = document.createElement("a"); a.href = url; a.download = name; a.click(); URL.revokeObjectURL(url);
+  const url = URL.createObjectURL(new Blob(["\ufeff", toCsv(rows)], { type: "text/csv;charset=utf-8" }));
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+  window.setTimeout(() => URL.revokeObjectURL(url), 30_000);
 }
 
 function AdminReports() {

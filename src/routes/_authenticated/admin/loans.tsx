@@ -10,7 +10,14 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/loans")({
-  head: () => ({ meta: [{ title: "Loans & Returns — Meridian College Library" }, { name: "description", content: "Track issued books, returns, overdue items and fines." }] }),
+  head: () => ({ meta: [
+    { title: "Loans & Returns — Meridian College Library" },
+    { name: "description", content: "Track issued books, returns, overdue items and fines." },
+    { property: "og:title", content: "Loans & Returns — Meridian College Library" },
+    { property: "og:description", content: "Manage active loans, returned books, overdue items, and fines." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminLoans,
 });
 
