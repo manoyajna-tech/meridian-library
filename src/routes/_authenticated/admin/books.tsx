@@ -20,7 +20,14 @@ import type { Book, Category } from "@/lib/library";
 import { downloadCSV, errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/books")({
-  head: () => ({ meta: [{ title: "Manage Books — Meridian College Library" }, { name: "description", content: "Add, edit and archive library books." }] }),
+  head: () => ({ meta: [
+    { title: "Manage Books — Meridian College Library" },
+    { name: "description", content: "Add, edit and archive library books." },
+    { property: "og:title", content: "Manage Books — Meridian College Library" },
+    { property: "og:description", content: "Maintain the library book catalog." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminBooks,
 });
 

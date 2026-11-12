@@ -12,7 +12,14 @@ import { errMsg } from "@/lib/library";
 import { useSession } from "@/lib/auth";
 
 export const Route = createFileRoute("/_authenticated/admin/users")({
-  head: () => ({ meta: [{ title: "Students — Meridian College Library" }, { name: "description", content: "Manage student accounts and roles." }] }),
+  head: () => ({ meta: [
+    { title: "Students — Meridian College Library" },
+    { name: "description", content: "Manage student accounts and roles." },
+    { property: "og:title", content: "Manage Students — Meridian College Library" },
+    { property: "og:description", content: "Review student accounts and library access." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminUsers,
 });
 

@@ -15,7 +15,14 @@ import { useProfile } from "@/lib/auth";
 import { DEPARTMENTS, errMsg, fmtDate } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/profile")({
-  head: () => ({ meta: [{ title: "Account settings — Meridian College Library" }, { name: "description", content: "Manage your profile and password." }] }),
+  head: () => ({ meta: [
+    { title: "Account settings — Meridian College Library" },
+    { name: "description", content: "Manage your profile and password." },
+    { property: "og:title", content: "Account Settings — Meridian College Library" },
+    { property: "og:description", content: "Manage your library profile and account details." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: ProfilePage,
 });
 

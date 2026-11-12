@@ -18,6 +18,8 @@ export const Route = createFileRoute("/register")({
       { name: "description", content: "Create your student library account to borrow books online." },
       { property: "og:title", content: "Register — Meridian College Library" },
       { property: "og:description", content: "Create your student library account." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Register,

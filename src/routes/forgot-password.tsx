@@ -15,6 +15,8 @@ export const Route = createFileRoute("/forgot-password")({
       { name: "description", content: "Reset the password for your library account." },
       { property: "og:title", content: "Forgot password — Meridian College Library" },
       { property: "og:description", content: "Reset your library account password." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Forgot,

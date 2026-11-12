@@ -9,7 +9,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { fmtDate, isOverdue } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/")({
-  head: () => ({ meta: [{ title: "Admin Dashboard — Meridian College Library" }, { name: "description", content: "Library administration overview." }] }),
+  head: () => ({ meta: [
+    { title: "Admin Dashboard — Meridian College Library" },
+    { name: "description", content: "Library administration overview." },
+    { property: "og:title", content: "Admin Dashboard — Meridian College Library" },
+    { property: "og:description", content: "Review circulation, requests, and collection activity." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminDashboard,
 });
 

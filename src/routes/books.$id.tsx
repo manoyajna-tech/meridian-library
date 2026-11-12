@@ -17,6 +17,8 @@ export const Route = createFileRoute("/books/$id")({
       { name: "description", content: "View book details, availability and request a copy from Meridian College Library." },
       { property: "og:title", content: "Book details — Meridian College Library" },
       { property: "og:description", content: "View availability and request this book." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: BookDetail,

@@ -10,7 +10,14 @@ import { Label } from "@/components/ui/label";
 import { errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/settings")({
-  head: () => ({ meta: [{ title: "Library Settings — Meridian College Library" }, { name: "description", content: "Configure loan period, borrowing limit and fines." }] }),
+  head: () => ({ meta: [
+    { title: "Library Settings — Meridian College Library" },
+    { name: "description", content: "Configure loan period, borrowing limit and fines." },
+    { property: "og:title", content: "Library Settings — Meridian College Library" },
+    { property: "og:description", content: "Set library loan limits, periods, and fine rates." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminSettings,
 });
 

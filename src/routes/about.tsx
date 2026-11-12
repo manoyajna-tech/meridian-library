@@ -9,6 +9,8 @@ export const Route = createFileRoute("/about")({
       { name: "description", content: "Learn about Meridian College Library, our collection, opening hours and borrowing policies." },
       { property: "og:title", content: "About — Meridian College Library" },
       { property: "og:description", content: "Our collection, hours and borrowing policies." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: About,

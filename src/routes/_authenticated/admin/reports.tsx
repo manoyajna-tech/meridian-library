@@ -6,6 +6,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { ErrorNote, PageHeader, Spinner } from "@/components/library/bits";
 import { Button } from "@/components/ui/button";
 import { errMsg } from "@/lib/library";
+import { toCsv } from "@/lib/reports-csv";
 
 export const Route = createFileRoute("/_authenticated/admin/reports")({
   head: () => ({ meta: [
@@ -19,13 +20,6 @@ export const Route = createFileRoute("/_authenticated/admin/reports")({
   component: AdminReports,
 });
 
-function toCsv(rows: Record<string, unknown>[]) {
-  const keys = rows.length
-    ? Object.keys(rows[0] ?? {})
-    : ["student", "student_id", "book", "category", "issued", "due", "returned", "status", "fine", "fine_paid"];
-  const esc = (v: unknown) => `"${String(v ?? "").replace(/"/g, '""')}"`;
-  return [keys.map(esc).join(","), ...rows.map((r) => keys.map((k) => esc(r[k])).join(","))].join("\n");
-}
 function download(name: string, rows: Record<string, unknown>[]) {
   const url = URL.createObjectURL(new Blob(["\ufeff", toCsv(rows)], { type: "text/csv;charset=utf-8" }));
   const a = document.createElement("a");

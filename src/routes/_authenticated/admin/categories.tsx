@@ -15,7 +15,14 @@ import type { Category } from "@/lib/library";
 import { errMsg } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/admin/categories")({
-  head: () => ({ meta: [{ title: "Categories — Meridian College Library" }, { name: "description", content: "Manage book categories." }] }),
+  head: () => ({ meta: [
+    { title: "Categories — Meridian College Library" },
+    { name: "description", content: "Manage book categories." },
+    { property: "og:title", content: "Manage Categories — Meridian College Library" },
+    { property: "og:description", content: "Organize books by subject category." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: AdminCategories,
 });
 
