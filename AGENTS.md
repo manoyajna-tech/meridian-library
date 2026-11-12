@@ -8,3 +8,5 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+- Keep loan-report CSV generation in a pure utility so empty exports retain stable spreadsheet headers and can be tested without the UI.

@@ -7,7 +7,14 @@ import { BookCard } from "@/components/library/BookCard";
 import { EmptyState, ErrorNote, PageHeader, Spinner } from "@/components/library/bits";
 
 export const Route = createFileRoute("/_authenticated/wishlist")({
-  head: () => ({ meta: [{ title: "Wishlist — Meridian College Library" }, { name: "description", content: "Your saved books." }] }),
+  head: () => ({ meta: [
+    { title: "Wishlist — Meridian College Library" },
+    { name: "description", content: "Your saved books." },
+    { property: "og:title", content: "My Wishlist — Meridian College Library" },
+    { property: "og:description", content: "View books saved to your library wishlist." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: Wishlist,
 });
 

@@ -11,5 +11,5 @@
 - [x] Admin reports: charts + CSV export
 - [x] Admin settings page
 - [x] Verify build + key flows in preview
-- [ ] Verify student book request → admin approval → return using the preview UI
-- [ ] Confirm report CSV downloads contain headers and loan data
+- [x] Verify student book request → admin approval → return using the preview UI
+- [x] Confirm report CSV downloads contain headers and loan data

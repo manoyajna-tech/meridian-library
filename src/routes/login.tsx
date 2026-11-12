@@ -20,6 +20,8 @@ export const Route = createFileRoute("/login")({
       { name: "description", content: "Sign in to your Meridian College Library account." },
       { property: "og:title", content: "Login — Meridian College Library" },
       { property: "og:description", content: "Sign in to manage your loans and requests." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Login,

@@ -14,7 +14,14 @@ import { calcFine, todayISO } from "@/lib/fines";
 import { errMsg, fmtDate, isOverdue, loanOverdueDays, money } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
-  head: () => ({ meta: [{ title: "My Dashboard — Meridian College Library" }, { name: "description", content: "Your loans, requests and fines." }] }),
+  head: () => ({ meta: [
+    { title: "My Dashboard — Meridian College Library" },
+    { name: "description", content: "Your loans, requests and fines." },
+    { property: "og:title", content: "Student Dashboard — Meridian College Library" },
+    { property: "og:description", content: "Review your book loans, requests, and fines." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: Dashboard,
 });
 

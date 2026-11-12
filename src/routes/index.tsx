@@ -18,6 +18,8 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Search the Meridian College Library catalog, request books online and track your loans and due dates." },
       { property: "og:title", content: "Meridian College Library" },
       { property: "og:description", content: "Your digital library, anytime, anywhere. Search, request and track books online." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
   }),
   component: Home,

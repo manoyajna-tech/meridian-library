@@ -12,6 +12,8 @@ export const Route = createFileRoute("/categories")({
       { name: "description", content: "Explore the library collection by subject: programming, computer science, mathematics, science, literature and more." },
       { property: "og:title", content: "Categories — Meridian College Library" },
       { property: "og:description", content: "Explore the collection by subject." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: Categories,

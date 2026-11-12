@@ -8,7 +8,14 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/_authenticated/notifications")({
-  head: () => ({ meta: [{ title: "Notifications — Meridian College Library" }, { name: "description", content: "Your library notifications." }] }),
+  head: () => ({ meta: [
+    { title: "Notifications — Meridian College Library" },
+    { name: "description", content: "Your library notifications." },
+    { property: "og:title", content: "Library Notifications — Meridian College Library" },
+    { property: "og:description", content: "View updates about book requests, loans, and returns." },
+    { property: "og:type", content: "website" },
+    { name: "twitter:card", content: "summary" },
+  ] }),
   component: Notifications,
 });
 
