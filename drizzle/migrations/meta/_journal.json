@@ -36,6 +36,13 @@
       "when": 1794828563836,
       "tag": "0004_preserve_admin_category_access",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794828826579,
+      "tag": "0005_keep_borrowing_limits_private",
+      "breakpoints": true
     }
   ]
 }
