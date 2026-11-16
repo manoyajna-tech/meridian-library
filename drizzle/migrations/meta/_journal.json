@@ -15,6 +15,13 @@
       "when": 1793707398119,
       "tag": "0001_create_wishlists",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1794827279065,
+      "tag": "0002_restrict_library_settings_and_cover_access",
+      "breakpoints": true
     }
   ]
 }
