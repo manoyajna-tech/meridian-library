@@ -13,3 +13,4 @@
 - [x] Verify build + key flows in preview
 - [x] Verify student book request → admin approval → return using the preview UI
 - [x] Confirm report CSV downloads contain headers and loan data
+- [ ] Fix only the two selected security findings: permissive row access and unbound storage ownership
