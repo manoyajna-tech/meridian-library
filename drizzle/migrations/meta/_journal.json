@@ -43,6 +43,13 @@
       "when": 1794828826579,
       "tag": "0005_keep_borrowing_limits_private",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794828854782,
+      "tag": "0006_preserve_student_history_categories",
+      "breakpoints": true
     }
   ]
 }
