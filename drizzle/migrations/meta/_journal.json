@@ -22,6 +22,34 @@
       "when": 1794827279065,
       "tag": "0002_restrict_library_settings_and_cover_access",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1794828369844,
+      "tag": "0003_scope_catalog_and_settings_reads",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794828563836,
+      "tag": "0004_preserve_admin_category_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1794828826579,
+      "tag": "0005_keep_borrowing_limits_private",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1794828854782,
+      "tag": "0006_preserve_student_history_categories",
+      "breakpoints": true
     }
   ]
 }

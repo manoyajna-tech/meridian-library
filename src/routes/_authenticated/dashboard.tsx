@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { useProfile } from "@/lib/auth";
-import { calcFine, todayISO } from "@/lib/fines";
 import { errMsg, fmtDate, isOverdue, loanOverdueDays, money } from "@/lib/library";
 
 export const Route = createFileRoute("/_authenticated/dashboard")({
@@ -32,15 +31,14 @@ function Dashboard() {
   const data = useQuery({
     queryKey: ["student-dash", userId],
     queryFn: async () => {
-      const [loans, reqs, settings, recent, adminExists] = await Promise.all([
+      const [loans, reqs, recent, adminExists] = await Promise.all([
         supabase.from("loans").select("*, books(id,title,author,cover_image_url)").eq("student_id", userId).order("issue_date", { ascending: false }),
         supabase.from("borrow_requests").select("*, books(id,title,author)").eq("student_id", userId).order("requested_at", { ascending: false }).limit(20),
-        supabase.from("library_settings").select("*").eq("id", 1).single(),
         supabase.from("books").select("id,title,author,cover_image_url,available_copies,total_copies,categories(name)").eq("is_archived", false).gt("available_copies", 0).order("created_at", { ascending: false }).limit(6),
         supabase.rpc("admin_exists"),
       ]);
       if (loans.error) throw loans.error;
-      return { loans: loans.data, reqs: reqs.data ?? [], settings: settings.data, recent: recent.data ?? [], adminExists: !!adminExists.data };
+      return { loans: loans.data, reqs: reqs.data ?? [], recent: recent.data ?? [], adminExists: !!adminExists.data };
     },
   });
   const cancel = useMutation({
@@ -55,13 +53,11 @@ function Dashboard() {
   });
 
   if (data.isLoading || !data.data) return <AppShell><Spinner /></AppShell>;
-  const { loans, reqs, settings, recent, adminExists } = data.data;
-  const rate = Number(settings?.fine_per_day ?? 0);
+  const { loans, reqs, recent, adminExists } = data.data;
   const active = loans.filter((l) => l.status === "active");
   const history = loans.filter((l) => l.status === "returned");
   const pending = reqs.filter((r) => r.status === "pending");
   const overdue = active.filter(isOverdue);
-  const accruing = overdue.reduce((s, l) => s + calcFine(l.due_date, todayISO(), rate), 0);
   const unpaid = history.filter((l) => !l.fine_paid).reduce((s, l) => s + Number(l.fine_amount), 0);
 
   return (
@@ -81,10 +77,10 @@ function Dashboard() {
       )}
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        <StatCard label="Books borrowed" value={`${active.length} / ${settings?.max_books_per_student ?? "–"}`} icon={<BookOpen className="h-4 w-4" />} />
+        <StatCard label="Books borrowed" value={active.length} icon={<BookOpen className="h-4 w-4" />} />
         <StatCard label="Pending requests" value={pending.length} icon={<ClipboardList className="h-4 w-4" />} tone="warn" />
         <StatCard label="Overdue" value={overdue.length} icon={<AlarmClock className="h-4 w-4" />} tone={overdue.length ? "danger" : "good"} />
-        <StatCard label="Fines due" value={money(accruing + unpaid)} icon={<IndianRupee className="h-4 w-4" />} tone={accruing + unpaid > 0 ? "danger" : "good"} />
+        <StatCard label="Assessed fines due" value={money(unpaid)} icon={<IndianRupee className="h-4 w-4" />} tone={unpaid > 0 ? "danger" : "good"} />
       </div>
 
       <div className="mt-8 grid gap-6 lg:grid-cols-3">
@@ -99,14 +95,14 @@ function Dashboard() {
                     <div className="min-w-0 flex-1">
                       <p className="truncate font-medium">{l.books?.title}</p>
                       <p className="text-xs text-muted-foreground">Issued {fmtDate(l.issue_date)} · Due {fmtDate(l.due_date)}</p>
-                      {isOverdue(l) && <p className="text-xs text-destructive">{loanOverdueDays(l)} days overdue · fine so far {money(calcFine(l.due_date, todayISO(), rate))}</p>}
+                      {isOverdue(l) && <p className="text-xs text-destructive">{loanOverdueDays(l)} days overdue · the library will confirm any current fine.</p>}
                     </div>
                     <StatusBadge status="active" overdue={isOverdue(l)} />
                   </div>
                 ))}
               </div>
             )}
-            <p className="mt-4 text-xs text-muted-foreground">Loan period {settings?.borrowing_period_days} days · late fine {money(rate)} per day after the due date.</p>
+            <p className="mt-4 text-xs text-muted-foreground">Borrowing limits and current late fines are managed by the library.</p>
           </CardContent>
         </Card>
         <Card>
