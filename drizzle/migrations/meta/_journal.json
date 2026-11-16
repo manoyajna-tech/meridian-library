@@ -29,6 +29,13 @@
       "when": 1794828369844,
       "tag": "0003_scope_catalog_and_settings_reads",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1794828563836,
+      "tag": "0004_preserve_admin_category_access",
+      "breakpoints": true
     }
   ]
 }
