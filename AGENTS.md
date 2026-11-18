@@ -10,3 +10,4 @@
 <!-- LOVABLE:END -->
 
 - Keep loan-report CSV generation in a pure utility so empty exports retain stable spreadsheet headers and can be tested without the UI.
+- Use the generated Lovable Cloud auth integration for managed social sign-in so OAuth sessions work in both preview and hosted app flows.

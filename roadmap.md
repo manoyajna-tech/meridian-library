@@ -1,6 +1,7 @@
 # Meridian Library — UI & Admin Dashboard Upgrade
 
 - [x] Super admin: manoyajnagarapati@gmail.com already has admin role (verified in DB)
+- [x] Add managed Google sign-in to the login page and route users to their requested or role-appropriate page
 - [x] Design tokens: spec palette (#142B4A navy, #245B91 royal blue, #F5F7FA bg, #D4AF37 gold)
 - [x] Login page redesign: show/hide password, remember me, welcome message
 - [x] Wishlist feature: table + RLS + page + toggle on book cards/detail

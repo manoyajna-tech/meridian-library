@@ -110,10 +110,27 @@ function RootComponent() {
   const router = useRouter();
 
   useEffect(() => {
-    const { data } = supabase.auth.onAuthStateChange((event) => {
-      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED") return;
+    const { data } = supabase.auth.onAuthStateChange((event, session) => {
+      if (event !== "SIGNED_IN" && event !== "SIGNED_OUT" && event !== "USER_UPDATED" && event !== "INITIAL_SESSION") return;
       router.invalidate();
       if (event !== "SIGNED_OUT") queryClient.invalidateQueries();
+
+      if ((event === "SIGNED_IN" || event === "INITIAL_SESSION") && session) {
+        const destination = sessionStorage.getItem("meridian-google-redirect");
+        if (destination !== null) {
+          sessionStorage.removeItem("meridian-google-redirect");
+          void (async () => {
+            const { data: { user } } = await supabase.auth.getUser();
+            if (!user) return;
+            if (destination.startsWith("/") && !destination.startsWith("//")) {
+              window.location.assign(destination || "/dashboard");
+              return;
+            }
+            const { data: isAdmin } = await supabase.rpc("has_role", { _user_id: user.id, _role: "admin" });
+            window.location.assign(isAdmin ? "/admin" : "/dashboard");
+          })();
+        }
+      }
     });
     return () => data.subscription.unsubscribe();
   }, [router, queryClient]);
